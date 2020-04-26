@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Martel+Sans&display=swap');
+
+$primary: #0c2e60;
+$secondary: #ff663b;
+$fontPrimary: 'Martel Sans';
+
+.logo {
+  height: 40px;
+  margin: 16px;
+  border-bottom: 1px solid #c0c0c0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.admin-container {
+  padding: 20px 40px;
+
+  @media screen and (min-width:0) and (max-width:767px) {
+    padding: 20px;
+  }
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h3 {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 0;
+
+    @media screen and (min-width:0px) and (max-width:450px) {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (min-width:0px) and (max-width:450px) {
+    flex-direction: column;
+  }
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+
+  @media screen and (min-width:0px) and (max-width:450px) {
+    justify-content: flex-start;
+  }
+
+  a, span {
+    font-size: 14px;
+    cursor: pointer;
+    color: $primary;
+    margin-right: 10px;
+
+    i {
+      margin-left: 5px;
+    }
+  }
+}
+
+.ant-menu-submenu-title span {
+  color: $primary;
+  font-family: $fontPrimary;
+}
+
+.ant-menu-item a {
+  display: inline-block;
+}
+
+.ant-menu-inline-collapsed > .ant-menu-item .anticon + a {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+}
+
+.ant-menu-item .anticon + a {
+  transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.swal-modal {
+  border-radius: 12px;
+  font-family: $fontPrimary;
+}
+
+.ant-table-pagination.ant-pagination {
+  margin: 16px;
+}
+
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+  font-family: $fontPrimary;
+}
