@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css?family=Martel+Sans&display=swap');
+
+$primary: #0c2e60;
+$secondary: #ff663b;
+$fontPrimary: 'Martel Sans';
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #fff !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #c0c0c0;
+}
+
+a {
+  color: $primary;
+  font-family: $fontPrimary;
+}
+
+h1, h2, h3, h4 {
+  font-family: $fontPrimary;
+}
+
+.title {
+  color: $primary;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-size: 30px;
+  border-bottom: 2px solid #c8c8c8;
+  margin-bottom: 30px;
+}
+
+.layout {
+  min-height: 100vh;
+
+  @media screen and (min-width: 0px) and (max-width: 720px) {
+    height: auto;
+  }
+}
+
+.App {
+  font-family: 'Martel Sans', sans-serif;
+  text-align: center;
+  background-color: #fff;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90vw;
+  padding: 30px 0;
+}
+
+.login-box {
+  text-align: center;
+}
+
+.login-box-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+
+  a {
+    margin-top: 20px;
+    font-size: 12px;
+  }
+}
+
+.header {
+  background: $primary;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+  nav {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+
+    ul {
+      display: flex;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+    }
+
+    li {
+      font-family: $fontPrimary;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-block;
+      padding: 10px;
+      transition: .5s;
+
+      a, span {
+        color: #fff;
+      }
+
+      &.currentUser {
+        text-transform: lowercase;
+      }
+
+      i {
+        margin-right: 5px;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.banner {
+  height: calc(100vh - 65px);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  @media screen and (min-width:0) and (max-width:600px) {
+    display: flex;
+    justify-content: center;
+  }
+
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% + 10px);
+  }
+
+  .illustration {
+    width: 10%;
+    left: 10%;
+    position: absolute;
+    bottom: 10vh;
+    z-index: 1;
+
+    @media screen and (min-width:0) and (max-width:600px) {
+      width: 220px;
+      bottom: 15vh;
+      z-index: 0;
+    }
+
+    @media screen and (min-width:600px) and (max-width:991px) {
+      width: 300px;
+    }
+  }
+
+  .banner-text {
+    position: absolute;
+    right: 10%;
+    top: 15%;
+    width: 40%;
+    text-align: right;
+
+    @media screen and (min-width:0) and (max-width:600px) {
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+      padding: 20px;
+      position: relative;
+      right: unset;
+      top: unset;
+    }
+
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+      margin-bottom: 0;
+      color: $secondary;
+
+      @media screen and (min-width:0) and (max-width:600px) { font-size: 36px; }
+    }
+
+    p {
+      font-size: 16px;
+      font-family: $fontPrimary;
+      color: $primary;
+    }
+  }
+}
+
+.page {
+  padding: 20px 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.add-item {
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.swal-modal {
+  border-radius: 12px;
+  font-family: $fontPrimary;
+}

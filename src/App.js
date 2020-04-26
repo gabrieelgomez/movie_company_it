@@ -1,26 +1,83 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {appRoutes, adminRoutes} from './routes';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { isAdmin } from './helpers';
 
-function App() {
+function PrivateRoute({ comp: Component, isAdmin, ...rest }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Route
+      {...rest}
+      render={(props) =>
+        isAdmin ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/'
+            }}
+          />
+        )
+      }
+    />
   );
 }
+class App extends React.Component {
+  render() {
+    const {
+      currentUser
+    } = this.props;
 
-export default App;
+    const currentUserIsAdmin = isAdmin(currentUser)
+
+    return (
+      <Router>
+        <Switch>
+          {appRoutes.map((route, index) => {
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={(props => {
+                  return (
+                    <route.layout {...props}>
+                      <route.component {...props} />
+                    </route.layout>
+                  );
+                })}
+              />
+            );
+          })}
+          {adminRoutes.map((route, index) => {
+            return (
+              <PrivateRoute
+                isAdmin={currentUserIsAdmin}
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                comp={(props => {
+                  return (
+                    <route.layout {...props}>
+                      <route.component {...props} />
+                    </route.layout>
+                  );
+                })}
+              />
+            );
+          })}
+        </Switch>
+      </Router>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  const { currentUser } = state.session;
+  return {
+    currentUser: currentUser
+  }
+}
+
+export default connect(mapStateToProps)(App);
