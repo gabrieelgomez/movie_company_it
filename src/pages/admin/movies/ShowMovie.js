@@ -2,6 +2,8 @@ import React from 'react';
 import MovieShowCard from '../../../components/admin/Movies/Show';
 import PeopleService from '../../../services/api/people';
 import MovieService from '../../../services/api/movies';
+import CastService from '../../../services/api/casts';
+import RoleService from '../../../services/api/roles';
 import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import { api } from '../../../services/api';
@@ -9,16 +11,67 @@ import { api } from '../../../services/api';
 class ShowMovie extends React.Component {
 
   state = {
-    movie: {},
-    casting: {},
-    directors: {}
+    movie: [],
+    people: [],
+    cast: [],
+    roles: {
+    }
   }
 
   componentDidMount() {
     this.movieID = this.props.match.params.id
     this.service_movies = new MovieService(this.props.api)
     this.service_people = new PeopleService(this.props.api)
+    this.service_casts  = new CastService(this.props.api)
+    this.service_roles  = new RoleService(this.props.api)
     this.getMovie(this.movieID)
+    this.getPeopleData()
+    this.getRoles()
+  }
+
+  handleSelectCasting = (e) => {
+    const value = e;
+    this.setState({
+      cast: JSON.parse(value)
+    })
+  }
+
+  createCasting = async (e) => {
+    e.preventDefault()
+    const { uid, client, access_token } = this.props.tokens;;
+    const { cast } = this.state;
+
+    await this.props.api({
+      method: 'POST',
+      endpoint: '/v1/casts/create',
+      payload: {
+        cast: cast
+      },
+      headers: {
+        'access-token': access_token,
+        client, uid
+      }
+    }).then((res) => {
+      swal('Cast created', '', 'success')
+      const data = res.data.included[0]
+      const movieData = data.attributes
+
+      const movie = {
+        id: data.id,
+        type: data.type,
+        ...movieData
+      }
+
+      this.setState({
+        movie
+      })    })
+    .catch((error) => {
+      swal({
+        title: "Error",
+        text: error.toString(),
+        icon: 'error'
+      })
+    });
   }
 
   getMovie = async (id) => {
@@ -34,13 +87,23 @@ class ShowMovie extends React.Component {
     }
 
     this.setState({
-      movie: movie,
-      casting: {
-        ...movieData.casting
-      },
-      directors: {
-        ...movieData.directors
-      }
+      movie
+    })
+  }
+
+  getPeopleData = async () => {
+    const {tokens} = this.props;
+    const data = await this.service_people.getPeople({tokens})
+    this.setState({
+      people: data
+    })
+  }
+
+  getRoles = async () => {
+    const {tokens} = this.props;
+    const res = await this.service_roles.getRoles({tokens})
+    this.setState({
+      roles: res
     })
   }
 
@@ -80,9 +143,11 @@ class ShowMovie extends React.Component {
   render() {
     return <MovieShowCard
       movie={this.state.movie}
-      casting={this.state.casting}
-      directors={this.state.directors}
+      people={this.state.people}
+      roles={this.state.roles}
       handleDelete={this.handleDelete}
+      handleSelectCasting={this.handleSelectCasting}
+      handleSubmitCast={this.createCasting}
     />
   }
 }

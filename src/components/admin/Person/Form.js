@@ -17,8 +17,7 @@ const PersonForm = (props) => {
     genre
   } = props.data;
 
-
-  const placeholderSelect = genre
+  const placeholderSelect = genre === '' ? 'Select Genre' : genre;
 
   return (
     <Form onSubmit={props.handleSubmit}>
@@ -30,7 +29,7 @@ const PersonForm = (props) => {
               type='text'
               name='first_name'
               value={first_name}
-              placeholder='Nombre de la propuesta'
+              placeholder='First name'
               onChange={props.handleChange}
             />
           </Form.Item>
@@ -43,7 +42,7 @@ const PersonForm = (props) => {
               type='text'
               name='last_name'
               value={last_name}
-              placeholder='Nombre de la propuesta'
+              placeholder='Last name'
               onChange={props.handleChange}
             />
           </Form.Item>
@@ -56,7 +55,7 @@ const PersonForm = (props) => {
               type='text'
               name='aliases'
               value={aliases}
-              placeholder='Nombre de la propuesta'
+              placeholder='Aliases'
               onChange={props.handleChange}
             />
           </Form.Item>
@@ -73,7 +72,6 @@ const PersonForm = (props) => {
         </Col>
 
       </Row>
-      { props.children }
       <Button htmlType='submit'>
         Save
       </Button>

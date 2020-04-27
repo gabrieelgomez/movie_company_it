@@ -44,14 +44,14 @@ class UpdateMovie extends React.Component {
     }
 
     this.setState({
-      movie: movie
+      movie
     })
   }
 
   updateMovie = (movie) => {
     const {tokens} = this.props;
     const payload = {
-      movie: movie
+      movie
     }
 
     const successCallback = () => {

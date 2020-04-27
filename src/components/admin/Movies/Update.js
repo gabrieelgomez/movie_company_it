@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledCard } from '../../styled';
-import MovieCategoryForm from './Form';
+import MovieForm from './Form';
 
 class UpdateMovieForm extends React.Component {
 
@@ -10,7 +10,7 @@ class UpdateMovieForm extends React.Component {
       <div className='admin-container'>
         <h1>Update Movie</h1>
         <StyledCard>
-          <MovieCategoryForm
+          <MovieForm
             data={this.props.movieData}
             moviePeople={moviePeople}
             currentUser={currentUser}

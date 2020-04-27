@@ -29,7 +29,7 @@ class NewMovie extends React.Component {
   createMovie = (movie) => {
     const {tokens} = this.props;
     const payload = {
-      movie: movie
+      movie
     }
 
     const successCallback = () => {

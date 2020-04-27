@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledCard } from '../../styled';
-import PersonCategoryForm from './Form';
+import PersonForm from './Form';
 
 class UpdatePersonForm extends React.Component {
 
@@ -10,11 +10,12 @@ class UpdatePersonForm extends React.Component {
       <div className='admin-container'>
         <h1>Update Movie</h1>
         <StyledCard>
-          <PersonCategoryForm
+          <PersonForm
             data={this.props.personData}
             currentUser={currentUser}
             handleSubmit={this.props.handleUpdatePerson}
             handleChange={this.props.handleChange}
+            handleSelect={this.props.handleSelect}
           />
         </StyledCard>
       </div>

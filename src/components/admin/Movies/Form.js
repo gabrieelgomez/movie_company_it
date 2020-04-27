@@ -45,7 +45,6 @@ const MovieForm = (props) => {
         </Col>
 
       </Row>
-      { props.children }
       <Button htmlType='submit'>
         Save
       </Button>

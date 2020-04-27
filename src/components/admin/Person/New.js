@@ -5,9 +5,10 @@ import PersonForm from './Form';
 class NewPersonForm extends React.Component {
   state = {
     person: {
-      title: '',
-      description: '',
-      person_category_id: '',
+      first_name: '',
+      last_name: '',
+      aliases: '',
+      genre: ''
     }
   }
 
@@ -15,6 +16,18 @@ class NewPersonForm extends React.Component {
     e.preventDefault()
     const { person } = this.state;
     this.props.createPerson(person)
+  }
+
+  handleSelectChange = (e) => {
+    const value = e;
+    this.setState(prevState => {
+      return {
+        person: {
+          ...prevState.person,
+          genre: value
+        }
+      }
+    });
   }
 
   handleChange = (e) => {
@@ -34,16 +47,15 @@ class NewPersonForm extends React.Component {
       person
     } = this.state;
 
-    const {personCategoriesData} = this.props;
     return (
       <div className='admin-container'>
-        <h1>Add new propuesta</h1>
+        <h1>Add new movie</h1>
         <StyledCard>
           <PersonForm
             handleSubmit={this.handleCreatePerson}
             handleChange={this.handleChange}
+            handleSelect={this.handleSelectChange}
             data={person}
-            personCategoriesData={personCategoriesData}
           >
           </PersonForm>
         </StyledCard>

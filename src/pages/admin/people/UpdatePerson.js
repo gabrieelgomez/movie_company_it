@@ -17,6 +17,18 @@ class UpdatePerson extends React.Component {
     this.getPerson(personID)
   }
 
+  handleSelectChange = (e) => {
+    const value = e;
+    this.setState(prevState => {
+      return {
+        person: {
+          ...prevState.person,
+          genre: value
+        }
+      }
+    });
+  }
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState(prevState=> {
@@ -78,6 +90,7 @@ class UpdatePerson extends React.Component {
       currentUser={this.props.currentUser}
       handleUpdatePerson={this.handleUpdatePerson}
       handleChange={this.handleChange}
+      handleSelect={this.handleSelectChange}
     />
   }
 }

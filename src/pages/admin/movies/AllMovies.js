@@ -8,23 +8,13 @@ import { api } from '../../../services/api';
 class AllMovies extends React.Component {
 
   state = {
-    movies: [],
-    movie_people: []
+    movies: []
   }
 
   componentDidMount() {
     this.service_people = new PeopleService(this.props.api)
     this.service_movies = new MovieService(this.props.api)
     this.getMoviesData()
-    this.getMoviePeopleData()
-  }
-
-  getMoviePeopleData = async () => {
-    const {tokens} = this.props;
-    const data = await this.service_people.getPeople({tokens})
-    this.setState({
-      movie_people: data
-    })
   }
 
   getMoviesData = async () => {
@@ -38,7 +28,6 @@ class AllMovies extends React.Component {
   render() {
     return <AdminMovies
       movies={this.state.movies}
-      movieCategoriesData={this.state.movie_people}
     />
   }
 }

@@ -17,6 +17,7 @@ const AdminMoviesList = (props) => {
         <Link to={`/admin/movie/${record.id}`}>{text}</Link>
       )}/>
       <Column title='Release Year' dataIndex='release_year' key='release_year'/>
+      <Column title='Release Roman Year' dataIndex='release_roman' key='release_roman'/>
     </StyledTable>
   )
 }
