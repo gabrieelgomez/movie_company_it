@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
 
     axios({
       method: 'POST',
-      url: `https://fast-beyond-28993.herokuapp.com/v1/auth/sign_in`,
+      url: `https://api-movie-company.herokuapp.com/v1/auth/sign_in`,
       headers: headers,
       data: {
         email: this.state.email,
