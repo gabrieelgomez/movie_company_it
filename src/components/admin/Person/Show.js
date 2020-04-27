@@ -10,9 +10,9 @@ const PersonShowCard = (props) => {
     last_name,
     aliases,
     genre,
-    as_actor = [],
-    as_director = [],
-    as_producer = []
+    movies_as_actor = [],
+    movies_as_director = [],
+    movies_as_producer = []
   } = props.person;
 
   return (
@@ -31,9 +31,9 @@ const PersonShowCard = (props) => {
 
         <br></br>
         <span>Directors:</span>
-        { as_director.length !== 0 &&
+        { movies_as_director.length !== 0 &&
           <List bordered>
-            { as_director.map((movie, i) => {
+            { movies_as_director.map((movie, i) => {
               return (
                 <List.Item key={i}>
                   <List.Item.Meta
@@ -49,9 +49,9 @@ const PersonShowCard = (props) => {
 
         <br></br>
         <span>Producers:</span>
-        { as_producer.length !== 0 &&
+        { movies_as_producer.length !== 0 &&
           <List bordered>
-            { as_producer.map((movie, i) => {
+            { movies_as_producer.map((movie, i) => {
               return (
                 <List.Item key={i}>
                   <List.Item.Meta
@@ -67,10 +67,10 @@ const PersonShowCard = (props) => {
 
         <br></br>
         <span>Actors / Actresses:</span>
-        { as_actor.length !== 0 &&
+        { movies_as_actor.length !== 0 &&
           <List bordered>
             {
-              as_actor.map((movie, i) => {
+              movies_as_actor.map((movie, i) => {
                 return (
                   <List.Item key={i}>
                     <List.Item.Meta
